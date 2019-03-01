@@ -99,4 +99,27 @@ router.put("/:id", async (req, res) => {
   }
 })
 
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params
+  if (isNaN(id)) {
+    res.status(400).json({ error: "The id has to be a number" })
+  } else {
+    const post = await db.findById(id)
+    if (post.length === 0) {
+      res
+        .status(404)
+        .json({ message: "The post with the specified ID does not exist." })
+    } else {
+      try {
+        await db.remove(id)
+        res.status(200).json(post)
+      } catch (error) {
+        // log error to database
+        console.log(error)
+        res.status(500).json({ error: "The post could not be removed" })
+      }
+    }
+  }
+})
+
 module.exports = router
