@@ -48,3 +48,25 @@ export const IconWrapper = styled.div`
     }
   }
 `
+
+export const InfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: auto;
+  margin-top: 200px;
+  padding: 20px;
+  background: linear-gradient(to bottom, #33ccff 0%, #3f0122 100%);
+  border: 2px solid #3f0122;
+  font-size: 1.8rem;
+`
+
+export const InfoGroup = styled.div`
+  margin-bottom: 10px;
+
+  div {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+`

@@ -1,10 +1,11 @@
 import React, { Component } from "react"
-import { Route } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import axios from "axios"
 
 import Navbar from "./components/Navbar"
 import PostsList from "./containers/PostsList"
 import PostForm from "./components/PostForm"
+import PostInfo from "./components/PostInfo"
 
 class App extends Component {
   state = {
@@ -62,40 +63,47 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <Route
-          exact
-          path="/"
-          render={props => (
-            <PostsList
-              {...props}
-              posts={this.state.posts}
-              delete={this.deleteHandler}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/add"
-          render={props => (
-            <PostForm
-              {...props}
-              posts={this.state.posts}
-              actionType="Add"
-              addPost={this.addPostHandler}
-            />
-          )}
-        />
-        <Route
-          path="/update/:id"
-          render={props => (
-            <PostForm
-              {...props}
-              posts={this.state.posts}
-              actionType="Update"
-              updatePost={this.updatePostHandler}
-            />
-          )}
-        />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <PostsList
+                {...props}
+                posts={this.state.posts}
+                delete={this.deleteHandler}
+              />
+            )}
+          />
+
+          <Route
+            exact
+            path="/add"
+            render={props => (
+              <PostForm
+                {...props}
+                posts={this.state.posts}
+                actionType="Add"
+                addPost={this.addPostHandler}
+              />
+            )}
+          />
+          <Route
+            path="/update/:id"
+            render={props => (
+              <PostForm
+                {...props}
+                posts={this.state.posts}
+                actionType="Update"
+                updatePost={this.updatePostHandler}
+              />
+            )}
+          />
+          <Route
+            path="/:id"
+            render={props => <PostInfo {...props} posts={this.state.posts} />}
+          />
+        </Switch>
       </div>
     )
   }

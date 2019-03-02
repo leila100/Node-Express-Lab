@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 import { PostWrapper, IconWrapper, Info } from "../styles/PostStyles"
 
@@ -6,7 +7,9 @@ const Post = props => {
   return (
     <PostWrapper>
       <Info>
-        <span>Post Title:</span> {props.post.title}
+        <Link to={`/${props.post.id}`}>
+          <span>Post Title:</span> {props.post.title}
+        </Link>
       </Info>
       <Info>
         <span>Post Content:</span> <p>{props.post.contents}</p>
