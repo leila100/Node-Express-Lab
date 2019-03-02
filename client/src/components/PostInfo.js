@@ -18,15 +18,12 @@ class PostInfo extends React.Component {
     axios
       .get(endpoint)
       .then(response => {
-        console.log(response.data[0])
         this.setState({ post: response.data[0] })
       })
       .catch(err => console.log(err))
   }
 
   render() {
-    console.log("Post: ", this.state.post)
-
     return (
       <InfoWrapper>
         <InfoGroup>
