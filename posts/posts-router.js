@@ -1,9 +1,12 @@
 const express = require("express")
+const cors = require("cors")
+
 const router = express.Router()
 
 const db = require("../data/db")
 
 router.use(express.json())
+router.use(cors())
 
 router.get("/", async (req, res) => {
   try {
